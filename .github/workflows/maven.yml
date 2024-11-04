@@ -25,9 +25,10 @@ jobs:
       working-directory: orders-service-example
       run: mvn -B package --file pom.xml
 
+
     - name: Upload JAR file
       working-directory: orders-service-example
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
           name: my-app-jar
           path: target/*.jar # Cambia esto si tu archivo JAR tiene un nombre específico
