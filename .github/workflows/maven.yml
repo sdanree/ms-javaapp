@@ -3,7 +3,7 @@ name: Maven CI/CD
 on:
   push:
     branches:
-      - main # Change this to your default branch
+      - main # Cambia esto a tu rama por defecto
   pull_request:
     branches:
       - main
@@ -14,21 +14,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up JDK 14
-      uses: actions/setup-java@v1
-      with:
-        java-version: 14
+      - name: Set up JDK 14
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14
 
-    - name: Build project with Maven
-      working-directory: orders-service-example
-      run: mvn -B package --file pom.xml
+      - name: Build project with Maven
+        working-directory: orders-service-example
+        run: mvn -B package --file pom.xml
 
-
-    - name: Upload JAR file
-      working-directory: orders-service-example
-      uses: actions/upload-artifact@v3
-      with:
+      - name: Upload JAR file
+        uses: actions/upload-artifact@v3
+        with:
           name: my-app-jar
-          path: target/*.jar # Cambia esto si tu archivo JAR tiene un nombre específico
+          path: orders-service-example/target/*.jar # Cambia esto si tu archivo JAR tiene un nombre específico
