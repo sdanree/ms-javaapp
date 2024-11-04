@@ -21,4 +21,5 @@ jobs:
         java-version: 14
 
     - name: Build project with Maven
+      working-directory: orders-service-example
       run: mvn -B package --file pom.xml
