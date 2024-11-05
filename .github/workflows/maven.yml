@@ -28,7 +28,7 @@ jobs:
       - name: Upload JAR file
         uses: actions/upload-artifact@v3
         with:
-          name: my-app-jar
+          name: orders-service
           path: orders-service-example/target/*.jar # Cambia esto si tu archivo JAR tiene un nombre específico
       
       - name: Build payments-service
@@ -38,5 +38,5 @@ jobs:
       - name: Upload payments JAR file
         uses: actions/upload-artifact@v3
         with:
-          name: my-app-jar
+          name: payments-service
           path: payments-service-example/target/*.jar 
