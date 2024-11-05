@@ -1,0 +1,15 @@
+version: '3'
+services:
+  order_service:
+    image: orders-service-example:1
+    container_name: orders-service-example 
+    ports:
+      - "8000:80"
+    restart: always
+    networks:
+      - monolith
+
+networks:
+  monolith:
+    driver: bridge
+
