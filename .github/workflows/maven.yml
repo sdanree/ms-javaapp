@@ -21,7 +21,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-
+  #  orders-service
       - name: Build orders-service
         working-directory: orders-service-example
         run: mvn -B package --file pom.xml
@@ -30,8 +30,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: orders-service
-          path: orders-service-example/target/*.jar # Cambia esto si tu archivo JAR tiene un nombre específico
-      
+          path: orders-service-example/target/*.jar 
+          
+  # payments-service      
       - name: Build payments-service
         working-directory: payments-service-example
         run: mvn -B package --file pom.xml
@@ -40,4 +41,26 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: payments-service
-          path: payments-service-example/target/*.jar 
+          path: payments-service-example/target/*.jar
+
+  # products-service      
+      - name: Build products-service
+        working-directory: products-service-example
+        run: mvn -B package --file pom.xml
+  
+      - name: Upload products JAR file
+        uses: actions/upload-artifact@v4
+        with:
+            name: products-service
+            path: products-service-example/target/*.jar 
+
+  #shipping-service
+      - name: Build shipping-service
+        working-directory: shipping-service-example
+        run: mvn -B package --file pom.xml
+    
+      - name: Upload shipping JAR file
+        uses: actions/upload-artifact@v4
+        with:
+              name: shipping-service
+              path: shipping-service-example/target/*.jar            
