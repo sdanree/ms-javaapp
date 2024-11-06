@@ -22,6 +22,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
   #  orders-service
+      - name: Run tests for orders-service
+        working-directory: orders-service-example
+        run: mvn -B test --file pom.xml 
+
       - name: Build orders-service
         working-directory: orders-service-example
         run: mvn -B package --file pom.xml
@@ -32,7 +36,11 @@ jobs:
           name: orders-service
           path: orders-service-example/target/*.jar 
           
-  # payments-service      
+  # payments-service   
+      - name: Run tests for payments-service
+        working-directory: payments-service-example
+        run: mvn -B test --file pom.xml
+  
       - name: Build payments-service
         working-directory: payments-service-example
         run: mvn -B package --file pom.xml
@@ -43,7 +51,11 @@ jobs:
           name: payments-service
           path: payments-service-example/target/*.jar
 
-  # products-service      
+  # products-service     
+      - name: Run tests for products-service
+        working-directory: products-service-example
+        run: mvn -B test --file pom.xml  
+
       - name: Build products-service
         working-directory: products-service-example
         run: mvn -B package --file pom.xml
@@ -55,6 +67,10 @@ jobs:
             path: products-service-example/target/*.jar 
 
   #shipping-service
+      - name: Run tests for shipping-service
+        working-directory: shipping-service-example
+        run: mvn -B test --file pom.xml
+
       - name: Build shipping-service
         working-directory: shipping-service-example
         run: mvn -B package --file pom.xml
