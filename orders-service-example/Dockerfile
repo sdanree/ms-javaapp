@@ -19,4 +19,5 @@ WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 
 # Define el comando de ejecución del .jar
-CMD ["java", "-jar", "app.jar"]
+#CMD ["java", "-jar", "app.jar", "$APP_ARGS"]
+CMD java -jar app.jar $APP_ARGS

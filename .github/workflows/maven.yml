@@ -47,7 +47,7 @@ jobs:
       - name: Build products-service
         working-directory: products-service-example
         run: mvn -B package --file pom.xml
-  
+
       - name: Upload products JAR file
         uses: actions/upload-artifact@v4
         with:
@@ -58,9 +58,9 @@ jobs:
       - name: Build shipping-service
         working-directory: shipping-service-example
         run: mvn -B package --file pom.xml
-    
+
       - name: Upload shipping JAR file
         uses: actions/upload-artifact@v4
         with:
               name: shipping-service
-              path: shipping-service-example/target/*.jar            
+              path: shipping-service-example/target/*.jar
