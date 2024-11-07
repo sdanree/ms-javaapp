@@ -9,23 +9,21 @@ on:
       - main
 
 jobs:
-  build_and_test:
+  build_and_test_MS:
 
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: '21'
+          distribution: 'zulu'
           cache: maven
-  #  orders-service
-      - name: Run tests for orders-service
-        working-directory: orders-service-example
-        run: mvn -B test --file pom.xml 
 
+  #  orders-service
+      
       - name: Build orders-service
         working-directory: orders-service-example
         run: mvn -B package --file pom.xml
@@ -34,13 +32,17 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: orders-service
-          path: orders-service-example/target/*.jar 
+          path: orders-service-example/target/*.jar
+
+     # - name: descarga archivos
+      - uses: actions/download-artifact@v4
+        with:
+          name: orders-service
+      - name: Display structure of downloaded files
+        run: ls -l
           
   # payments-service   
-      - name: Run tests for payments-service
-        working-directory: payments-service-example
-        run: mvn -B test --file pom.xml
-  
+       
       - name: Build payments-service
         working-directory: payments-service-example
         run: mvn -B package --file pom.xml
@@ -50,12 +52,16 @@ jobs:
         with:
           name: payments-service
           path: payments-service-example/target/*.jar
+       
+      #- name: Download JAR artifact
+      - uses: actions/download-artifact@v4
+        with:
+          name: payments-service
+      - name: Display structure of downloaded files
+        run: ls -l    
 
   # products-service     
-      - name: Run tests for products-service
-        working-directory: products-service-example
-        run: mvn -B test --file pom.xml  
-
+      
       - name: Build products-service
         working-directory: products-service-example
         run: mvn -B package --file pom.xml
@@ -67,10 +73,7 @@ jobs:
             path: products-service-example/target/*.jar 
 
   #shipping-service
-      - name: Run tests for shipping-service
-        working-directory: shipping-service-example
-        run: mvn -B test --file pom.xml
-
+      
       - name: Build shipping-service
         working-directory: shipping-service-example
         run: mvn -B package --file pom.xml
